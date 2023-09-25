@@ -1,0 +1,260 @@
+use ecommerce_db;
+switched to db ecommerce_db
+db.products.insertMany([{"name":"tablet","stock":20,"price":20000},{"name":"headset","stock":30,"price":300},{"name":"mobilephone","stock":25,"price":23000},{"name":"laptop","stock":12,"price":20000}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6511209dbc8c277e4a33c0c0"),
+    '1': ObjectId("6511209dbc8c277e4a33c0c1"),
+    '2': ObjectId("6511209dbc8c277e4a33c0c2"),
+    '3': ObjectId("6511209dbc8c277e4a33c0c3")
+  }
+}
+db.products.find();
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c1"),
+  name: 'headset',
+  stock: 30,
+  price: 300
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c2"),
+  name: 'mobilephone',
+  stock: 25,
+  price: 23000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 20000
+}
+db.products.insertOne({"name":"alexa","stock":2,"price":4000});
+{
+  acknowledged: true,
+  insertedId: ObjectId("65112123bc8c277e4a33c0c4")
+}
+db.products.findOne({"name":"alexa"});
+{
+  _id: ObjectId("65112123bc8c277e4a33c0c4"),
+  name: 'alexa',
+  stock: 2,
+  price: 4000
+}
+db.products.find({"price":{$gt:4000}});
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c2"),
+  name: 'mobilephone',
+  stock: 25,
+  price: 23000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 20000
+}
+db.products.find({"stock":{$lt:25}});
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 20000
+}
+{
+  _id: ObjectId("65112123bc8c277e4a33c0c4"),
+  name: 'alexa',
+  stock: 2,
+  price: 4000
+}
+db.products.find({"price":{$gte:20000,$lte:4000}});
+db.products.find({"price":{$eq:20000}});
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 20000
+}
+db.products.find({$and:[{"price":{$gt:2000}},{"stock":{$gte:12}}]});
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c2"),
+  name: 'mobilephone',
+  stock: 25,
+  price: 23000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 20000
+}
+db.products.find({$or:[{"price":{$lt:2000}},{"stock":{$lte:12}}]});
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c1"),
+  name: 'headset',
+  stock: 30,
+  price: 300
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 20000
+}
+{
+  _id: ObjectId("65112123bc8c277e4a33c0c4"),
+  name: 'alexa',
+  stock: 2,
+  price: 4000
+}
+db.products.updateOne({"name":"laptop"},{$set:{"price":50000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.products.find();
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c1"),
+  name: 'headset',
+  stock: 30,
+  price: 300
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c2"),
+  name: 'mobilephone',
+  stock: 25,
+  price: 23000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 12,
+  price: 50000
+}
+{
+  _id: ObjectId("65112123bc8c277e4a33c0c4"),
+  name: 'alexa',
+  stock: 2,
+  price: 4000
+}
+db.products.updateMany({"price":{$gt:20000}},{$set:{"stock":50}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+db.products.find();
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c1"),
+  name: 'headset',
+  stock: 30,
+  price: 300
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c2"),
+  name: 'mobilephone',
+  stock: 50,
+  price: 23000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 50,
+  price: 50000
+}
+{
+  _id: ObjectId("65112123bc8c277e4a33c0c4"),
+  name: 'alexa',
+  stock: 2,
+  price: 4000
+}
+db.products.deleteOne({"name":"alexa"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.products.find();
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c0"),
+  name: 'tablet',
+  stock: 20,
+  price: 20000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c1"),
+  name: 'headset',
+  stock: 30,
+  price: 300
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c2"),
+  name: 'mobilephone',
+  stock: 50,
+  price: 23000
+}
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c3"),
+  name: 'laptop',
+  stock: 50,
+  price: 50000
+}
+db.products.deleteMany({"price":{$gt:2000}});
+{
+  acknowledged: true,
+  deletedCount: 3
+}
+db.products.find();
+{
+  _id: ObjectId("6511209dbc8c277e4a33c0c1"),
+  name: 'headset',
+  stock: 30,
+  price: 300
+}
+db.products.countDocuments();
